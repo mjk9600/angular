@@ -1,0 +1,107 @@
+<div [ngClass]="'eventopic'">
+<h2 style="text-align: center;">Information Binding</h2>
+
+<!--Interpolation Example  which is called in {} brackets-->
+<p>1.Interpolation = <strong>{{inter_data}}</strong></p>
+
+<!--Property Binding Example which is called in [] brackets in html tag-->
+<!-- variable in this bracket [] called Box syntax -->
+<p>2.Property Binding = <strong [innerText]="property_data"></strong></p>
+
+<!--Event Binding Example which is called when Event occured-->
+<!-- variable in this bracket () called Banana syntax -->
+<div [hidden]="event_var">
+  <p>3.Click on Button for Event Binding = <strong [innerText]="property_data"></strong></p>
+</div>
+<button (click)="toggle()">Toggle</button>
+
+</div>
+
+
+<hr>
+
+
+
+
+
+<div [ngClass]="'oddtopic'">
+<h2 style="text-align: center;">Attributes</h2>
+<!-- For hidding events ngIf attribute is Good they not show hidden property in inspect code -->
+ <!-- It's work like If condition true then property dispaly -->
+change the number from ngif propery and check the below element how works<br>
+<!--{{rooms?.availRooms ?? 'No Rooms'}}--><!--This is for optional chaining use in case property not assignable-->
+  <div *ngIf="rooms.availRooms > 0">
+    <strong>Rooms are availebel</strong>
+    <br>Table display by *ngFor attribute
+    <table>
+        <tr>
+          <th>Index</th>
+          <th>Even/Odd</th>
+          <th>Room Number</th>
+          <th>Room Type</th>
+          <th>Room Aminities</th>
+          <th>Room Price</th>
+          <th>Room CheckIn Time</th>
+          <th>Room CheckOut Time</th>
+        </tr>
+        <!-- *ngFor work as for loop which is structural attribute -->
+        <!-- ngClass work for css attribute -->
+        <tr [ngClass]="e ? 'even' : 'odd'"
+        *ngFor="let room of roomList; let e = even; let o = odd;let i = index">
+          <td>{{i}}</td>
+          <td>{{e ? "EVEN" : "ODD"}}</td>
+          <td>{{room.roomNumber}}</td>
+          <td>{{room.roomType}}</td>
+          <td>{{room.aminities}}</td>
+          <td>{{room.price}}</td>
+          <td>{{room.checkIn | date :'short'}}</td>
+          <td>{{room.checkOut | date : 'm/d/yy'}}</td>
+        </tr>
+    </table>
+  </div>
+
+  <div [ngStyle]="{'color':rooms.availRooms > 10 ? 'green':'red'}"  [innerText]="isRoom"> 
+  </div>
+
+</div>
+<hr>
+
+
+
+<div [ngClass]="'eventopic'">
+<div>
+<h2 style="text-align: center;">Pipes</h2>
+  <!-- Pipes Example -->
+<!-- below we use Different Pipes which help to display different formats availabel on official angular sites -->
+  <tr><b>percent Pipe  :: </b>{{roomList[0].roomNumber| percent}}</tr>
+  <tr><b>UpperCase Pipe  :: </b>{{roomList[0].roomType | uppercase}}</tr>
+  <tr><b>Case Pipe :: </b>{{roomList[0].aminities | titlecase}}</tr><!--uppercase,lowercase-->
+  <tr><b>Currency Pipe  :: </b>{{roomList[0].price| currency : 'INR' }}</tr>
+  <tr><b>Date Pipe :: </b>{{today|date:'medium'}}</tr>
+  <tr class="text-break"><b>Json Pipe :: </b>{{roomList |json}}</tr>
+  <table>
+    <td><b>Slice Pipe  :: </b></td>
+    <tr [ngClass]="e ? 'even' : 'odd'"
+    *ngFor="let room of roomList | slice: 0:1; let e = even; let o = odd;let i = index">
+      
+      <td>{{i}}</td>
+      <td>{{e ? "EVEN" : "ODD"}}</td>
+      <td>{{room.roomNumber}}</td>
+      <td>{{room.roomType}}</td>
+      <td>{{room.aminities}}</td>
+      <td>{{room.price}}</td>
+      <td>{{room.checkIn | date :'short'}}</td>
+      <td>{{room.checkOut | date : 'm/d/yy'}}</td>
+    </tr>
+    <tr>
+      <td><b>Decimal Or Number Pipe ::</b></td>
+      <td>{{23.23 | number :'1.0-0'}}</td>
+      <td>{{23.23 | number :'1.1-1'}}</td>
+      <td>{{23.23 | number :'1.1-2'}}</td>
+      <td>{{23.53 | number :'1.0-0'}}</td>
+      <td>{{23.567 | number :'1.1-1'}}</td>
+      <td>{{23.567 | number :'1.1-2'}}</td>
+    </tr>
+</table>
+</div>
+</div>

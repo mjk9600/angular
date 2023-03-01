@@ -1,0 +1,16 @@
+.even{
+  background-color: orangered;
+  color:white
+}
+
+.odd{
+  background-color: darkgray;
+  color: white;
+}
+
+.oddtopic{
+  background-color: rgb(215, 253, 253);
+}
+.eventopic{
+  background-color: pink;
+}
