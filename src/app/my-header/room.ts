@@ -5,7 +5,7 @@ export interface Room{
 }
 //   bookRooms ?: number  (use ? for optional chaining concept )
 
-export interface Roomlist{
+export interface RoomList{
   roomNumber : number;
   roomType : string;
   aminities : string;

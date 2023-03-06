@@ -1,5 +1,5 @@
 <div [ngClass]="'eventopic'">
-<h2 style="text-align: center;">Information Binding</h2>
+<h2>Information Binding</h2>
 
 <!--Interpolation Example  which is called in {} brackets-->
 <p>1.Interpolation = <strong>{{inter_data}}</strong></p>
@@ -25,7 +25,7 @@
 
 
 <div [ngClass]="'oddtopic'">
-<h2 style="text-align: center;">Attributes</h2>
+<h2>Attributes</h2>
 <!-- For hidding events ngIf attribute is Good they not show hidden property in inspect code -->
  <!-- It's work like If condition true then property dispaly -->
 change the number from ngif propery and check the below element how works<br>
@@ -57,7 +57,10 @@ change the number from ngif propery and check the below element how works<br>
           <td>{{room.checkIn | date :'short'}}</td>
           <td>{{room.checkOut | date : 'm/d/yy'}}</td>
         </tr>
-    </table>
+    </table>  
+    <!-- this button work for understanding of ChangeDetectionStrategy.OnPush concept 
+      which is added in room-list.component.ts  -->
+    <button (click)="addRoom()">Add Room</button>
   </div>
 
   <div [ngStyle]="{'color':rooms.availRooms > 10 ? 'green':'red'}"  [innerText]="isRoom"> 
@@ -70,7 +73,7 @@ change the number from ngif propery and check the below element how works<br>
 
 <div [ngClass]="'eventopic'">
 <div>
-<h2 style="text-align: center;">Pipes</h2>
+<h2>Pipes</h2>
   <!-- Pipes Example -->
 <!-- below we use Different Pipes which help to display different formats availabel on official angular sites -->
   <tr><b>percent Pipe  :: </b>{{roomList[0].roomNumber| percent}}</tr>
@@ -103,5 +106,32 @@ change the number from ngif propery and check the below element how works<br>
       <td>{{23.567 | number :'1.1-2'}}</td>
     </tr>
 </table>
+</div>
+</div>
+
+<hr>
+<div [ngClass]="'oddtopic'">
+  <div *ngIf="rooms.availRooms > 0">
+    <!-- app-room-list is child component of my-header -->
+    <!-- Here @Input are used by rooms attribute which is communicate
+    with child component -->
+   
+  <app-rooms-list [rooms]="roomList" [title]="title" (selectedRoom)="selectRoom($event)"></app-rooms-list>
+  <br>
+  <div class="container-fluid bg-info">
+  <!-- Below div use for @Output communication from child Component -->
+  <b>@Output communication from child Component Occured when Select button press in above table</b>
+  <br>
+  <div *ngIf="selectedRoom" class="bg-success text-light" >
+      {{selectedRoom | json}}
+  </div>
+</div>
+</div>
+<div>
+  <b>@view child example::</b>
+  <app-header></app-header>
+  <b>@view children example::</b>
+  <app-header></app-header>
+  <!-- multiple same component display by the @viewchildren -->
 </div>
 </div>

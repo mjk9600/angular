@@ -1,0 +1,38 @@
+<h2 style="text-align: center;">Life Hooks & Component Interection</h2>
+<p><b>OnChanges : </b>The method receives a SimpleChanges object 
+  of current and previous property values.<b>Check in console</b></p>
+<p>onChanges Effect ::<b>{{title}}</b> </p>
+<p><b>DoCheck : </b>it is interface for check all events are worked or not check in console.</p>
+<b>@Input communication use with rooms attribute in room-list component which is help to fatch value from RoomList</b>
+<br>
+  <table>
+        <tr>
+          <th>Index</th>
+          <th>Even/Odd</th>
+          <th>Room Number</th>
+          <th>Room Type</th>
+          <th>Room Aminities</th>
+          <th>Room Price</th>
+          <th>Room CheckIn Time</th>
+          <th>Select Room</th>
+        </tr>
+  <!-- Here @Input are used by rooms which is communicate with
+     parent component my-header -->
+        <tr [ngClass]="e ? 'even' : 'odd'"
+        *ngFor="let room of rooms; let e = even; let o = odd;let i = index">
+          <td>{{i}}</td>
+          <td>{{e ? "EVEN" : "ODD"}}</td>
+          <td>{{room.roomNumber}}</td>
+          <td>{{room.roomType}}</td>
+          <td>{{room.aminities}}</td>
+          <td>{{room.price}}</td>
+          <td>{{room.checkIn | date :'short'}}</td>
+          <td><button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="selectRoom(room)">Select</button></td>
+        </tr>
+    </table>  
+    <br>
+
+    
